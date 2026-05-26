@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — SIE Exam Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --white: #ffffff;
+    --ink: #17171c;
+    --ink-soft: #3d3d44;
+    --muted: #6b6b75;
+    --border: #d9d9dd;
+    --bg-subtle: #f7f7f8;
+    --accent: #0a5cff;
+    --accent-soft: #eff4ff;
+    --radius: 10px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links .nav-cta {
+    background: var(--ink);
+    color: var(--white);
+    padding: 7px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+
+  .nav-links .nav-cta:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  /* ── MAIN ── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .section-body p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── EXAM FACTS ── */
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .fact-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .fact-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .fact-value {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* ── SECTIONS TABLE ── */
+  .sections-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+
+  .sections-table thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sections-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sections-table td {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+
+  .sections-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .sections-table td:first-child {
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .pct-badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 100px;
+    border: 1px solid rgba(10, 92, 255, 0.15);
+  }
+
+  /* ── STATS ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .stat-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── DISCLAIMER BOX ── */
+  .disclaimer-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .disclaimer-box p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-block {
+    margin-top: 12px;
+  }
+
+  .contact-block p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .contact-link:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: var(--white);
+    padding: 48px 0 40px;
+    margin-top: 80px;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 10px;
+  }
+
+  .footer-disclaimer {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .nav-links .back-link {
+      display: none;
+    }
+
+    .fact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-top {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">SIE Prep</a>
+    <div class="nav-links">
+      <a href="app.html" class="nav-cta">Practice App</a>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-eyebrow">About</div>
+    <h1 class="hero-title">About SIE Exam Prep</h1>
+    <p class="hero-sub">A free practice platform built for SIE exam candidates</p>
+  </section>
+
+  <!-- WHAT IS SIE EXAM PREP -->
+  <section class="section">
+    <h2 class="section-title">What is SIE Exam Prep?</h2>
+    <div class="section-body">
+      <p>SIE Exam Prep is a free, comprehensive practice tool for anyone studying for the FINRA Securities Industry Essentials (SIE) exam. We built this platform to give candidates a focused, no-cost way to practice real exam-style questions and build genuine confidence before test day.</p>
+      <p>The question bank covers all four sections of the exam and is regularly updated to reflect the current FINRA content outline. Whether you're studying for the first time or drilling weak areas before your retake, SIE Exam Prep is designed to meet you where you are.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT THE SIE EXAM -->
+  <section class="section">
+    <h2 class="section-title">About the SIE Exam</h2>
+    <div class="section-body">
+      <p>The Securities Industry Essentials (SIE) Exam is a FINRA-administered qualification exam required for anyone seeking to work in the securities industry. It tests fundamental knowledge of the securities industry and is a prerequisite for most securities license registrations.</p>
+    </div>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-label">Questions</div>
+        <div class="fact-value">75 scored<br><span style="font-size:13px;font-weight:400;color:var(--muted)">+ 5 unscored pretest items</span></div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Time Limit</div>
+        <div class="fact-value">1 hour<br>45 minutes</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Passing Score</div>
+        <div class="fact-value">70%</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Exam Sections</div>
+        <div class="fact-value">4 content areas</div>
+      </div>
+    </div>
+    <table class="sections-table">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Topic</th>
+          <th>Weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Section 1</td>
+          <td>Knowledge of Capital Markets</td>
+          <td><span class="pct-badge">16%</span></td>
+        </tr>
+        <tr>
+          <td>Section 2</td>
+          <td>Understanding Products &amp; Their Risks</td>
+          <td><span class="pct-badge">44%</span></td>
+        </tr>
+        <tr>
+          <td>Section 3</td>
+          <td>Understanding Trading, Customer Accounts &amp; Prohibited Activities</td>
+          <td><span class="pct-badge">31%</span></td>
+        </tr>
+        <tr>
+          <td>Section 4</td>
+          <td>Overview of the Regulatory Framework</td>
+          <td><span class="pct-badge">9%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- OUR QUESTION BANK -->
+  <section class="section">
+    <h2 class="section-title">Our Question Bank</h2>
+    <div class="section-body">
+      <p>Every question in our bank is original content written to reflect the style and difficulty of the actual SIE exam. We cover concepts across all four content areas with detailed rationales so you understand why each answer is correct.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-number">3,426</span>
+        <span class="stat-label">Practice questions</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">4</span>
+        <span class="stat-label">FINRA sections covered</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Study modes</span>
+      </div>
+    </div>
+    <div style="margin-top: 20px;">
+      <div class="section-body">
+        <p>The app includes multiple study modes — Quiz, Study, Drill, and Starred — along with session history and progress tracking, so you can target your weakest areas and see how you improve over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="section">
+    <h2 class="section-title">Disclaimer</h2>
+    <div class="disclaimer-box">
+      <p>SIE Exam Prep is an independent study resource and is not affiliated with, endorsed by, or connected to FINRA (Financial Industry Regulatory Authority). FINRA® and SIE® are registered trademarks of the Financial Industry Regulatory Authority. All practice questions are original content created for educational purposes only.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-block">
+      <p>Questions or feedback? We'd love to hear from you.</p>
+      <a href="mailto:pankaj.lamkhade@outlook.com" class="contact-link">
+        ✉ pankaj.lamkhade@outlook.com
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo">SIE Prep</a>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="about.html">About</a>
+        <a href="app.html">Practice App</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 SIE Exam Prep. Not affiliated with FINRA.</p>
+    <p class="footer-disclaimer">SIE Exam Prep is an independent study tool. FINRA® and SIE® are registered trademarks of the Financial Industry Regulatory Authority.</p>
+  </div>
+</footer>
+
+</body>
+</html>

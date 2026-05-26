@@ -1,0 +1,13 @@
+{
+  "lastChecked": null,
+  "sources": [
+    {"name": "FINRA SIE Content Outline", "url": "https://www.finra.org/registration-exams-ce/qualification-exams/securities-industry-essentials-exam", "notes": "Check for exam content updates"},
+    {"name": "FINRA SIE Practice Test", "url": "https://www.finra.org/registration-exams-ce/qualification-exams/securities-industry-essentials-exam/practice-test", "notes": "Check for new practice questions"},
+    {"name": "FINRA Content Outline PDF 2025", "url": "https://www.finra.org/sites/default/files/2025-10/SIE_Content_Outline.pdf", "notes": "Review annually for exam updates"}
+  ],
+  "metadata": {
+    "lastUpdated": null,
+    "totalQuestions": 3426,
+    "version": "1.0.0"
+  }
+}

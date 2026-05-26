@@ -1,0 +1,73 @@
+name: Monthly Question Bank Update
+
+on:
+  schedule:
+    # Runs at 9am UTC on the 1st of every month
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+    inputs:
+      rephrase:
+        description: 'Also run question rephrasing (costs API tokens)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  update-questions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run question bank update report
+        run: node scripts/update-questions.js
+
+      - name: Upload update report
+        uses: actions/upload-artifact@v4
+        with:
+          name: update-report-${{ github.run_id }}
+          path: scripts/update-report.json
+          retention-days: 90
+
+      - name: Run question rephrasing (if requested)
+        if: ${{ github.event.inputs.rephrase == 'true' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/rephrase.js
+
+      - name: Commit rephrased questions (if generated)
+        if: ${{ github.event.inputs.rephrase == 'true' }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add js/questions-rephrased.js scripts/rephrase-progress.json || true
+          git diff --staged --quiet || git commit -m "chore: update rephrased question bank"
+          git push || true
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: update-questions
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: sie-exam-prep
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

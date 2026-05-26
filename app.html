@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SIE Exam Practice App — Free Quiz</title>
+<meta name="description" content="Practice for the FINRA SIE exam with 3,426 free questions across all 4 sections. Track progress, drill wrong answers, and star difficult questions.">
+<link rel="canonical" href="https://sieexamprep.pages.dev/app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+<!-- Google AdSense -->
+<!-- ADSENSE_PLACEHOLDER: Replace with your actual AdSense publisher ID -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+
+<div id="home" class="screen active">
+  <div class="home-inner">
+    <div class="logo-badge"><div class="logo-dot"></div><span>SIE EXAM PREP</span></div>
+    <h1 class="home-title">Practice for the<br><span>SIE Exam</span></h1>
+    <p class="home-sub">3,426 questions across all 4 FINRA sections. Track your progress, drill wrong answers, and pass with confidence.</p>
+    <div class="unseen-bar"><span class="unseen-bar-label">New questions remaining</span><span class="unseen-bar-val" id="unseen-count">3426</span></div>
+    <div class="stats-row">
+      <div class="stat-card" onclick="goHome()"><span class="stat-num" id="stat-total">3426</span><span class="stat-label">Questions</span></div>
+      <div class="stat-card" onclick="goLog()"><span class="stat-num" id="stat-avg">--</span><span class="stat-label">Avg Score</span></div>
+      <div class="stat-card" onclick="goMistakes()"><span class="stat-num danger" id="stat-mistakes">0</span><span class="stat-label">To Review</span></div>
+      <div class="stat-card" onclick="goStars()"><span class="stat-num star-color" id="stat-stars">0</span><span class="stat-label">Starred</span></div>
+    </div>
+    <div class="section-perf" id="section-perf">
+      <div class="sp-title">Section Performance</div>
+      <div id="sp-rows"></div>
+    </div>
+    <div class="resume-banner" id="resume-banner" onclick="resumeSession()">
+      <span class="mb-icon">▶</span>
+      <div class="mb-content"><div class="mb-title purple">Resume Session</div><div class="mb-sub" id="resume-sub">You have an interrupted session</div></div>
+      <span class="mb-arrow purple">›</span>
+    </div>
+    <div class="mistake-banner" id="mistake-banner" onclick="goMistakes()">
+      <span class="mb-icon">🔥</span>
+      <div class="mb-content"><div class="mb-title wrong-color">Review Wrong Answers</div><div class="mb-sub" id="mb-sub-text">Questions to drill</div></div>
+      <div class="mb-count wrong-bg" id="mb-count">0</div>
+      <span class="mb-arrow wrong-color">›</span>
+    </div>
+    <div class="star-banner" id="star-banner" onclick="goStars()">
+      <span class="mb-icon">⭐</span>
+      <div class="mb-content"><div class="mb-title star-color">Starred Questions</div><div class="mb-sub" id="star-sub-text">Marked for review</div></div>
+      <div class="mb-count star-bg" id="star-count-badge">0</div>
+      <span class="mb-arrow star-color">›</span>
+    </div>
+    <div class="section-label">Study Mode</div>
+    <div class="mode-grid">
+      <button class="mode-btn selected" onclick="selectMode('quiz')" id="mode-quiz"><span class="mode-icon">⚡</span><span class="mode-name">Quiz Mode</span><span class="mode-desc">Answer and score</span></button>
+      <button class="mode-btn" onclick="selectMode('study')" id="mode-study"><span class="mode-icon">📚</span><span class="mode-name">Study Mode</span><span class="mode-desc">See answers as you go</span></button>
+    </div>
+    <div class="section-label">Filter by FINRA Section</div>
+    <div class="topic-grid" id="topic-grid"></div>
+    <div class="section-label">Questions per Session</div>
+    <div class="mode-grid">
+      <button class="mode-btn" onclick="selectCount(10)" id="count-10"><span class="mode-name">10 Questions</span><span class="mode-desc">Quick session</span></button>
+      <button class="mode-btn" onclick="selectCount(25)" id="count-25"><span class="mode-name">25 Questions</span><span class="mode-desc">Short practice</span></button>
+      <button class="mode-btn selected" onclick="selectCount(75)" id="count-75"><span class="mode-name">75 Questions</span><span class="mode-desc">🎓 SIE Exam weighted</span></button>
+      <button class="mode-btn" onclick="selectCount(100)" id="count-100"><span class="mode-name">100 Questions</span><span class="mode-desc">Extended practice</span></button>
+      <button class="mode-btn" onclick="selectCount(150)" id="count-150"><span class="mode-name">150 Questions</span><span class="mode-desc">Deep drill</span></button>
+      <button class="mode-btn" onclick="selectCount(0)" id="count-all"><span class="mode-name">All Questions</span><span class="mode-desc">Full bank</span></button>
+    </div>
+    <button class="start-btn" onclick="startQuiz()">Start Practice Session →</button>
+    <div class="reset-link"><button onclick="resetSeen()">Reset question history</button></div>
+    <!-- AdSense: Home page bottom banner -->
+    <div class="adsense-slot" id="ad-home-bottom">
+      <!-- ADSENSE_PLACEHOLDER
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+    </div>
+  </div>
+</div>
+
+<div id="quiz" class="screen">
+  <div class="quiz-header">
+    <div class="quiz-header-top">
+      <button class="back-btn" onclick="pauseSession()">‹</button>
+      <span class="q-counter" id="q-counter">1 / 75</span>
+      <div class="header-pills">
+        <span class="score-pill" id="score-pill">Score: 0</span>
+        <span class="drill-pill" id="drill-pill">🔥 DRILL</span>
+        <span class="star-drill-pill" id="star-drill-pill">⭐ STARRED</span>
+      </div>
+      <button class="pause-btn" onclick="pauseSession()">▮▮ Pause</button>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="quiz-body">
+    <div class="q-tag-row">
+      <div class="q-tag" id="q-tag"><span id="q-num-tag">Q1</span></div>
+      <span class="section-tag" id="q-section-tag">S1</span>
+      <div class="wrong-badge" id="wrong-badge" style="display:none"><span id="wrong-badge-text"></span></div>
+      <button class="star-btn" id="star-btn" onclick="toggleStar()"><span>⭐</span><span class="star-label" id="star-label">Star</span></button>
+    </div>
+    <div class="question-text" id="question-text">Loading...</div>
+    <div class="choices" id="choices"></div>
+    <div class="rationale-box" id="rationale-box">
+      <div class="rationale-header"><span>Explanation</span></div>
+      <div class="rationale-text" id="rationale-text"></div>
+    </div>
+    <div class="nav-row">
+      <button class="nav-btn btn-back btn-prev" onclick="prevQ()">← Prev</button>
+      <button class="nav-btn btn-next" id="next-btn" onclick="nextQ()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div id="result" class="screen">
+  <div class="result-inner">
+    <!-- AdSense: Post-quiz result ad (high-value placement) -->
+    <div class="adsense-slot adsense-result-top">
+      <!-- ADSENSE_PLACEHOLDER
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle" data-full-width-responsive="false" style="width:300px;height:250px;margin:0 auto 20px;"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+    </div>
+    <span class="result-label">Session Complete</span>
+    <div class="result-grade" id="result-grade">Good Work</div>
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg viewBox="0 0 140 140">
+          <circle class="ring-bg" cx="70" cy="70" r="58"/>
+          <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="58" stroke="#003c33" stroke-dasharray="364" stroke-dashoffset="364"/>
+        </svg>
+        <div class="score-center"><span class="score-frac" id="score-frac">0/0</span><span class="score-pct" id="score-pct">0%</span></div>
+      </div>
+    </div>
+    <div class="section-scores" id="section-scores-box">
+      <div class="ss-title">Score by FINRA Section</div>
+      <div id="ss-rows"></div>
+    </div>
+    <div class="mistake-result-box" id="mistake-result-box">
+      <div class="mrb-title">🔥 Added to Review Queue</div>
+      <div class="mrb-sub" id="mrb-sub">Questions added to drill list</div>
+      <div id="mistake-result-list"></div>
+    </div>
+    <div class="breakdown"><div class="breakdown-title">Question Breakdown</div><div id="breakdown-list"></div></div>
+    <div class="result-btns">
+      <button class="res-btn secondary" onclick="goHome()">← Home</button>
+      <button class="res-btn primary" onclick="restartQuiz()">↻ Try Again</button>
+    </div>
+    <button class="res-btn danger" id="drill-from-result-btn" onclick="startDrillFromResult()" style="width:100%" disabled>🔥 Drill Wrong Answers</button>
+  </div>
+</div>
+
+<div id="mistakes-home" class="screen">
+  <div class="mistakes-inner">
+    <button class="screen-back" onclick="goHome()">← Back</button>
+    <div class="screen-badge wrong-bg"><span>🔥 Review Queue</span></div>
+    <div class="screen-title">Wrong<br><span style="color:var(--wrong)">Answers</span></div>
+    <p class="screen-sub">Weighted by how many times you got them wrong.</p>
+    <div class="section-label">Drill Mode</div>
+    <div class="drill-options">
+      <button class="drill-opt selected" onclick="selectDrillMode('weighted')" id="drill-weighted"><span class="drill-opt-name">Weighted</span><span class="drill-opt-desc">More wrong = appears more</span></button>
+      <button class="drill-opt" onclick="selectDrillMode('all')" id="drill-all"><span class="drill-opt-name">All Wrong</span><span class="drill-opt-desc">Every wrong question once</span></button>
+    </div>
+    <button class="action-btn wrong-btn" id="drill-start-btn" onclick="startDrill()">🔥 Start Drill Session</button>
+    <div class="list-header">
+      <div class="section-label" style="margin-bottom:0">Queue (<span id="mistake-count-label">0</span>)</div>
+      <button class="clear-btn" onclick="clearMistakes()">Clear All</button>
+    </div>
+    <div class="item-list" id="mistake-list"></div>
+  </div>
+</div>
+
+<div id="stars-home" class="screen">
+  <div class="stars-inner">
+    <button class="screen-back" onclick="goHome()">← Back</button>
+    <div class="screen-badge star-bg"><span>⭐ Starred</span></div>
+    <div class="screen-title">Starred<br><span style="color:var(--star)">Questions</span></div>
+    <p class="screen-sub">Questions you marked as difficult.</p>
+    <button class="action-btn star-btn-full" id="star-drill-start-btn" onclick="startStarDrill()">⭐ Drill Starred Questions</button>
+    <div class="list-header">
+      <div class="section-label" style="margin-bottom:0">Starred (<span id="star-count-label">0</span>)</div>
+      <button class="clear-btn" onclick="clearStars()">Clear All</button>
+    </div>
+    <div class="item-list" id="star-list"></div>
+  </div>
+</div>
+
+<div id="log-home" class="screen">
+  <div class="log-inner">
+    <button class="screen-back" onclick="goHome()">← Back</button>
+    <div class="screen-badge purple-bg"><span>📊 Session Log</span></div>
+    <div class="screen-title">Session<br><span style="color:var(--purple)">History</span></div>
+    <p class="screen-sub">Every session with section-by-section breakdown.</p>
+    <div class="section-avg-card" id="sac-card">
+      <div class="sac-title">All-Time Section Averages</div>
+      <div id="sac-rows"></div>
+    </div>
+    <div class="focus-tip" id="focus-tip"></div>
+    <div class="list-header">
+      <div class="section-label" style="margin-bottom:0">Sessions (<span id="log-count-label">0</span>)</div>
+      <div style="display:flex;gap:8px;">
+        <button class="clear-btn export-btn" onclick="exportCSV()">⇓ CSV</button>
+        <button class="clear-btn" onclick="clearLog()">Clear</button>
+      </div>
+    </div>
+    <div class="item-list" id="log-list"></div>
+  </div>
+</div>
+
+<div class="pause-overlay" id="pause-overlay">
+  <div class="pause-title">▮▮ Paused</div>
+  <div class="pause-sub">Your progress is saved.<br>Pick up where you left off anytime.</div>
+  <div class="pause-stats">
+    <div class="ps-row"><span class="ps-label">Question</span><span class="ps-val" id="ps-question">--</span></div>
+    <div class="ps-row"><span class="ps-label">Score so far</span><span class="ps-val" id="ps-score">--</span></div>
+    <div class="ps-row"><span class="ps-label">Session type</span><span class="ps-val" id="ps-type">--</span></div>
+    <div class="ps-row"><span class="ps-label">Wrong so far</span><span class="ps-val" id="ps-wrong">--</span></div>
+  </div>
+  <div class="pause-btns">
+    <button class="pb pb-resume" onclick="resumeFromOverlay()">▶ Resume Session</button>
+    <button class="pb pb-quit" onclick="quitSession()">✕ Quit &amp; Save Progress</button>
+  </div>
+</div>
+
+<script src="js/questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

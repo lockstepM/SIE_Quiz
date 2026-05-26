@@ -1,0 +1,5 @@
+node_modules/
+scripts/rephrase-progress.json
+scripts/update-report.json
+.env
+*.log

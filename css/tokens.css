@@ -1,0 +1,159 @@
+/* ============================================================
+   SIE Exam Prep — Design Tokens (Cohere Design System)
+   tokens.css
+   ============================================================ */
+
+/* Google Fonts: Space Grotesk & Inter as fallbacks for
+   CohereText / Unica77 Cohere Web / CohereMono               */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+
+  /* ── Colors ────────────────────────────────────────────── */
+
+  /* Brand / structural */
+  --color-primary:        #17171c;
+  --color-cohere-black:   #000000;
+  --color-ink:            #212121;
+  --color-deep-green:     #003c33;
+  --color-dark-navy:      #071829;
+  --color-on-primary:     #ffffff;
+  --color-on-dark:        #ffffff;
+
+  /* Surface / background */
+  --color-canvas:         #ffffff;
+  --color-soft-stone:     #eeece7;
+  --color-pale-green:     #edfce9;
+  --color-pale-blue:      #f1f5ff;
+
+  /* Borders / rules */
+  --color-hairline:       #d9d9dd;
+  --color-border-light:   #e5e7eb;
+  --color-card-border:    #f2f2f2;
+
+  /* Text */
+  --color-body-muted:     #616161;
+  --color-muted:          #93939f;
+  --color-slate:          #75758a;
+
+  /* Accent / action */
+  --color-action-blue:    #1863dc;
+  --color-focus-blue:     #4c6ee6;
+  --color-coral:          #ff7759;
+  --color-coral-soft:     #ffad9b;
+  --color-form-focus:     #9b60aa;
+
+  /* Semantic */
+  --color-error:          #b30000;
+
+  /* Section palette */
+  --color-s1:             #003c33;   /* Capital Markets – deep green   */
+  --color-s2:             #1863dc;   /* Products         – action blue  */
+  --color-s3:             #ff7759;   /* Trading          – coral        */
+  --color-s4:             #9b60aa;   /* Regulatory       – form-focus   */
+
+  /* Section surface tints (light backgrounds) */
+  --color-s1-soft:        rgba(0, 60, 51, 0.10);
+  --color-s2-soft:        rgba(24, 99, 220, 0.10);
+  --color-s3-soft:        rgba(255, 119, 89, 0.10);
+  --color-s4-soft:        rgba(155, 96, 170, 0.10);
+
+  /* Correct / wrong state surfaces */
+  --color-correct-surface: #edfce9;
+  --color-correct-border:  #003c33;
+  --color-wrong-surface:   rgba(179, 0, 0, 0.08);
+  --color-wrong-border:    rgba(179, 0, 0, 0.30);
+
+  /* ── Typography ────────────────────────────────────────── */
+
+  /* Font stacks */
+  --font-display:  'CohereText', 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-ui:       'Unica77 Cohere Web', 'Inter', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono:     'CohereMono', 'Space Grotesk', ui-monospace, 'Courier New', monospace;
+
+  /* Font sizes */
+  --fs-hero:       96px;
+  --fs-product:    72px;
+  --fs-section-d:  60px;
+  --fs-section-h:  48px;
+  --fs-card-h:     32px;
+  --fs-feature-h:  24px;
+  --fs-body-lg:    18px;
+  --fs-body:       16px;
+  --fs-button:     14px;
+  --fs-caption:    14px;
+  --fs-mono:       14px;
+  --fs-micro:      12px;
+  --fs-xs:         11px;
+  --fs-xxs:        10px;
+
+  /* Font weights */
+  --fw-regular:    400;
+  --fw-medium:     500;
+
+  /* Line heights */
+  --lh-tight:      1;
+  --lh-heading:    1.2;
+  --lh-feature:    1.3;
+  --lh-body-lg:    1.4;
+  --lh-body:       1.5;
+  --lh-button:     1.71;
+
+  /* Letter spacings */
+  --ls-hero:       -1.92px;
+  --ls-product:    -1.44px;
+  --ls-section-d:  -1.2px;
+  --ls-section-h:  -0.48px;
+  --ls-card-h:     -0.32px;
+  --ls-mono:       0.28px;
+  --ls-upper:      2px;
+  --ls-wide:       1px;
+
+  /* ── Spacing ────────────────────────────────────────────── */
+
+  --space-xxs:     2px;
+  --space-xs:      6px;
+  --space-sm:      8px;
+  --space-md:      12px;
+  --space-lg:      16px;
+  --space-xl:      24px;
+  --space-xxl:     32px;
+  --space-section: 80px;
+
+  /* ── Border Radius ──────────────────────────────────────── */
+
+  --radius-xs:     4px;
+  --radius-sm:     8px;
+  --radius-md:     16px;
+  --radius-lg:     22px;
+  --radius-xl:     30px;
+  --radius-pill:   32px;
+  --radius-full:   9999px;
+
+  /* ── Shadows / elevation ────────────────────────────────── */
+  /* Cohere is mostly flat; depth via surface contrast + borders */
+  --shadow-none:   none;
+  --shadow-border: 0 0 0 1px var(--color-hairline);
+
+  /* ── Transitions ────────────────────────────────────────── */
+  --transition-fast:  0.15s ease;
+  --transition-base:  0.2s ease;
+  --transition-slow:  0.4s ease;
+  --transition-ring:  1s ease;
+
+  /* ── Z-index layers ─────────────────────────────────────── */
+  --z-header:  10;
+  --z-overlay: 100;
+
+  /* ── App layout ─────────────────────────────────────────── */
+  --app-max-width: 520px;
+  --app-padding-x: 20px;
+
+  /* ── Legacy aliases (used by inline styles in app.html) ─── */
+  --wrong:   #b30000;
+  --star:    #d97706;
+  --purple:  #9b60aa;
+  --accent:  #003c33;
+  --gold:    #d97706;
+  --orange:  #ff7759;
+}

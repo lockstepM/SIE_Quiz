@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — SIE Exam Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --white: #ffffff;
+    --ink: #17171c;
+    --ink-soft: #3d3d44;
+    --muted: #6b6b75;
+    --border: #d9d9dd;
+    --bg-subtle: #f7f7f8;
+    --accent: #0a5cff;
+    --accent-soft: #eff4ff;
+    --radius: 10px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links .nav-cta {
+    background: var(--ink);
+    color: var(--white);
+    padding: 7px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+
+  .nav-links .nav-cta:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  /* ── MAIN ── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero-meta {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-top: 12px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .section-body p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    margin-bottom: 32px;
+  }
+
+  .subsection:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .subsection p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .subsection p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--accent-soft);
+    border: 1px solid rgba(10, 92, 255, 0.15);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .highlight-box p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .highlight-box strong {
+    color: var(--accent);
+  }
+
+  /* ── NEUTRAL BOX ── */
+  .neutral-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .neutral-box p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── SERVICES LIST ── */
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .services-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .services-list li:last-child {
+    border-bottom: none;
+  }
+
+  .service-name {
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-block {
+    margin-top: 4px;
+  }
+
+  .contact-block p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    line-height: 1.75;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .contact-link:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: var(--white);
+    padding: 48px 0 40px;
+    margin-top: 80px;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 10px;
+  }
+
+  .footer-disclaimer {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .nav-links .back-link {
+      display: none;
+    }
+
+    .service-name {
+      min-width: 120px;
+    }
+
+    .footer-top {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">SIE Prep</a>
+    <div class="nav-links">
+      <a href="app.html" class="nav-cta">Practice App</a>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-eyebrow">Legal</div>
+    <h1 class="hero-title">Privacy Policy</h1>
+    <p class="hero-meta">Last updated: May 2026</p>
+    <p class="hero-sub">How SIE Exam Prep collects, uses, and protects your information.</p>
+  </section>
+
+  <!-- 1. INTRODUCTION -->
+  <section class="section">
+    <h2 class="section-title">Introduction</h2>
+    <div class="section-body">
+      <p>SIE Exam Prep ("we," "our," or "us") operates the website at this domain (the "Site"). This Privacy Policy explains what information we collect when you use the Site, how we use it, and what choices you have.</p>
+      <p>By using SIE Exam Prep, you agree to the collection and use of information in accordance with this policy. If you do not agree with any part of this policy, please do not use the Site.</p>
+    </div>
+  </section>
+
+  <!-- 2. INFORMATION WE COLLECT -->
+  <section class="section">
+    <h2 class="section-title">Information We Collect</h2>
+
+    <div class="subsection">
+      <div class="subsection-title">Local Storage Data</div>
+      <p class="subsection" style="color: var(--ink-soft); font-size: 15px; line-height: 1.75; margin-bottom: 0;">When you use the practice app, your quiz progress is saved directly in your browser's local storage. This includes:</p>
+      <div class="highlight-box" style="margin-top: 14px;">
+        <p><strong>What is stored locally:</strong> wrong answers, starred questions, session history, quiz scores, and study mode preferences. This data never leaves your device and is never transmitted to any server. We have no access to it.</p>
+      </div>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.75; margin-top: 10px;">You can delete this data at any time by clearing your browser's local storage, or by clicking "Reset question history" within the app.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Cookies</div>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.75; margin-bottom: 10px;">We use cookies for analytics and advertising purposes. Cookies are small text files placed on your device by your web browser when you visit a site. They allow us and third-party services (described below) to recognize your browser on future visits.</p>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.75;">You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, some features of the Site may not function as intended.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Usage Data</div>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.75;">We may collect anonymous usage data through Google Analytics, including information such as your browser type, operating system, pages visited, time spent on pages, and referring URLs. This information is aggregated and cannot be used to identify you personally.</p>
+    </div>
+  </section>
+
+  <!-- 3. GOOGLE ADSENSE -->
+  <section class="section">
+    <h2 class="section-title">Google AdSense</h2>
+    <div class="section-body">
+      <p>We use Google AdSense to display advertisements on this Site. Google AdSense uses cookies to serve ads based on your prior visits to this website or other websites across the Internet.</p>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our Site and other sites on the Internet. The information collected is used to deliver advertisements that are relevant to you and your interests.</p>
+    </div>
+    <div class="neutral-box">
+      <p>You may opt out of personalized advertising at any time by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google's Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener">www.aboutads.info/choices</a>.</p>
+    </div>
+    <div class="section-body" style="margin-top: 16px;">
+      <p>For more information about how Google uses data when you use our Site, please review Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.</p>
+    </div>
+  </section>
+
+  <!-- 4. THIRD-PARTY SERVICES -->
+  <section class="section">
+    <h2 class="section-title">Third-Party Services</h2>
+    <div class="section-body">
+      <p>We use the following third-party services on this Site. Each service operates under its own privacy policy, which we encourage you to review.</p>
+    </div>
+    <ul class="services-list">
+      <li>
+        <span class="service-name">Google AdSense</span>
+        <span>Advertising — serves display ads based on your browsing behavior. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></span>
+      </li>
+      <li>
+        <span class="service-name">Google Fonts</span>
+        <span>Typography — font files are loaded from Google's servers. Google may collect your IP address when fonts are requested. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></span>
+      </li>
+      <li>
+        <span class="service-name">Google Analytics</span>
+        <span>Analytics — collects anonymous usage data to help us understand how visitors use the Site. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 5. DATA RETENTION -->
+  <section class="section">
+    <h2 class="section-title">Data Retention</h2>
+    <div class="section-body">
+      <p>All quiz progress data — including your wrong answers, starred questions, session history, and scores — is stored only in your browser's local storage on your device. We do not receive, store, or retain this data on any server.</p>
+      <p>You can delete your local data at any time by:</p>
+    </div>
+    <div class="neutral-box">
+      <p>Clearing your browser's local storage via your browser settings, or clicking <strong>"Reset question history"</strong> inside the SIE Exam Prep app. Either action permanently deletes all locally stored progress data from your device.</p>
+    </div>
+    <div class="section-body" style="margin-top: 16px;">
+      <p>Anonymous analytics data collected by Google Analytics is retained according to Google's own data retention policies.</p>
+    </div>
+  </section>
+
+  <!-- 6. CHILDREN'S PRIVACY -->
+  <section class="section">
+    <h2 class="section-title">Children's Privacy</h2>
+    <div class="section-body">
+      <p>This website is not directed to children under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us using the email address below.</p>
+      <p>If we become aware that we have inadvertently received personal information from a child under the age of 13, we will take steps to delete such information as soon as possible.</p>
+    </div>
+  </section>
+
+  <!-- 7. CHANGES TO THIS POLICY -->
+  <section class="section">
+    <h2 class="section-title">Changes to This Policy</h2>
+    <div class="section-body">
+      <p>We may update this Privacy Policy from time to time. When we do, we will revise the "Last updated" date at the top of this page. We encourage you to review this policy periodically to stay informed about how we are protecting your information.</p>
+      <p>Continued use of the Site after any changes to this Privacy Policy constitutes your acceptance of those changes.</p>
+    </div>
+  </section>
+
+  <!-- 8. CONTACT -->
+  <section class="section">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-block">
+      <p>If you have any questions or concerns about this Privacy Policy or our data practices, please reach out — we're happy to help.</p>
+      <a href="mailto:pankaj.lamkhade@outlook.com" class="contact-link">
+        ✉ pankaj.lamkhade@outlook.com
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo">SIE Prep</a>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="about.html">About</a>
+        <a href="app.html">Practice App</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 SIE Exam Prep. Not affiliated with FINRA.</p>
+    <p class="footer-disclaimer">SIE Exam Prep is an independent study tool. FINRA® and SIE® are registered trademarks of the Financial Industry Regulatory Authority.</p>
+  </div>
+</footer>
+
+</body>
+</html>
