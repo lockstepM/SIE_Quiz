@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "SIE Exam Prep - 3,426 practice questions",
   "scripts": {
+    "generate": "node scripts/generate-questions.js",
     "rephrase": "node scripts/rephrase.js",
     "update": "node scripts/update-questions.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.36.0"
+    "@anthropic-ai/sdk": "^0.36.0",
+    "@google/generative-ai": "^0.24.0"
   }
 }

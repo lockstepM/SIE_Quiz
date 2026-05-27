@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * generate-questions.js — Generate 1,500 original SIE exam practice questions
- * using the Claude API (claude-sonnet-4-6).
+ * using the Google Gemini API (gemini-2.0-flash).
  *
  * Usage:
- *   ANTHROPIC_API_KEY=sk-ant-... node scripts/generate-questions.js
+ *   GEMINI_API_KEY=AIza... node scripts/generate-questions.js
  *
  * Progress is saved to scripts/generate-progress.json after each API call so
  * the script can be safely interrupted and resumed.
@@ -14,12 +14,12 @@
 
 'use strict';
 
-const Anthropic = require('@anthropic-ai/sdk');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
 
 // ── Configuration ──────────────────────────────────────────────────────────────
-const MODEL = 'claude-sonnet-4-6';
+const MODEL = 'gemini-2.0-flash';
 const MAX_TOKENS = 8192;
 const MAX_RETRIES = 5;
 
@@ -753,7 +753,7 @@ Return ONLY a JSON array, no other text:
 }
 
 /**
- * Call the Anthropic API for a single topic batch, with retry logic.
+ * Call the Gemini API for a single topic batch, with retry logic.
  * Returns an array of parsed question objects.
  */
 async function generateBatch(client, topicEntry, batchLabel) {
@@ -769,13 +769,16 @@ async function generateBatch(client, topicEntry, batchLabel) {
         await sleep(backoffMs);
       }
 
-      const response = await client.messages.create({
+      const model = client.getGenerativeModel({
         model: MODEL,
-        max_tokens: MAX_TOKENS,
-        messages: [{ role: 'user', content: prompt }],
+        generationConfig: {
+          responseMimeType: 'application/json',
+          maxOutputTokens: MAX_TOKENS,
+        },
       });
 
-      const rawText = response.content[0].text.trim();
+      const result = await model.generateContent(prompt);
+      const rawText = result.response.text().trim();
 
       // Strip any markdown code fence if present
       const jsonText = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '');
@@ -836,8 +839,8 @@ async function generateBatch(client, topicEntry, batchLabel) {
     } catch (err) {
       lastError = err;
       const status = err.status || (err.error && err.error.status);
-      const isRateLimit = status === 429;
-      const isServerError = status === 500 || status === 529;
+      const isRateLimit = status === 429 || (err.message && err.message.includes('quota'));
+      const isServerError = status === 500 || status === 503;
 
       if (!isRateLimit && !isServerError && attempt > 1) {
         // Non-retriable after first attempt unless it's a rate limit or server error
@@ -910,12 +913,12 @@ function writeOutput(questions) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('Error: ANTHROPIC_API_KEY environment variable is not set.');
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('Error: GEMINI_API_KEY environment variable is not set.');
     process.exit(1);
   }
 
-  const client = new Anthropic();
+  const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const progress = loadProgress();
 
   console.log('=== SIE Question Generator ===');
