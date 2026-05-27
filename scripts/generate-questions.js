@@ -764,9 +764,7 @@ async function generateBatch(client, topicEntry, batchLabel) {
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       if (attempt > 1) {
-        const backoffMs = Math.min(2 ** (attempt - 1) * 2000, 32000);
-        console.log(`  Retry ${attempt}/${MAX_RETRIES} for ${batchLabel} in ${backoffMs / 1000}s...`);
-        await sleep(backoffMs);
+        console.log(`  Retry ${attempt}/${MAX_RETRIES} for ${batchLabel}...`);
       }
 
       const model = client.getGenerativeModel({
@@ -838,16 +836,24 @@ async function generateBatch(client, topicEntry, batchLabel) {
       return validated;
     } catch (err) {
       lastError = err;
-      const status = err.status || (err.error && err.error.status);
-      const isRateLimit = status === 429 || (err.message && err.message.includes('quota'));
-      const isServerError = status === 500 || status === 503;
+      const msg = err.message || '';
+      const isRateLimit = msg.includes('429') || msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED');
+      const isServerError = msg.includes('500') || msg.includes('503');
 
-      if (!isRateLimit && !isServerError && attempt > 1) {
-        // Non-retriable after first attempt unless it's a rate limit or server error
-        if (attempt >= MAX_RETRIES) break;
+      if (!isRateLimit && !isServerError) break; // non-retriable error
+
+      // Respect the retryDelay Gemini tells us, fall back to exponential backoff
+      let waitMs = Math.min(2 ** attempt * 5000, 120000); // 10s, 20s, 40s, 80s, 120s
+      const delayMatch = msg.match(/"retryDelay"\s*:\s*"(\d+)s"/);
+      if (delayMatch) {
+        waitMs = (parseInt(delayMatch[1], 10) + 5) * 1000; // add 5s buffer
       }
 
-      console.warn(`  Attempt ${attempt} failed for ${batchLabel}: ${err.message}`);
+      console.warn(`  Attempt ${attempt} failed for ${batchLabel}: ${msg.slice(0, 120)}`);
+      if (attempt < MAX_RETRIES) {
+        console.log(`  Waiting ${Math.round(waitMs / 1000)}s before retry...`);
+        await sleep(waitMs);
+      }
     }
   }
 
