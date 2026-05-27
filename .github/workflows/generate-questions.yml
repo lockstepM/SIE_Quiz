@@ -1,6 +1,11 @@
 name: Generate Question Bank
 
 on:
+  push:
+    branches:
+      - claude/sie-app-visibility-htDqg
+    paths:
+      - .github/trigger-generate
   workflow_dispatch:
     inputs:
       resume:
